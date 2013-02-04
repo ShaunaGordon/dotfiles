@@ -1,0 +1,10 @@
+{
+	"bold_folder_labels": true,
+	"font_size": 9,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"word_wrap": "true"
+}
