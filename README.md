@@ -38,7 +38,7 @@ If you want to see what the others do, look through them. There's a bunch of dif
 
 For the most part, it's all about the symlinks. The bootstrap comes across any `*.symlink` file, it symlinks it to the `~/` directory. One of the fun parts about this is that it's not limited to *files*. So you can also drop in a `*.symlink` directory and have the entire folder symlinked to `~/` (see the nano folder for this in action).
 
-It will also find any `setup.sh` files and run them, which will handle special setups, such as symlinking SublimeText2's settings to where they need to go, or copying include files into the nginx directory.l
+It will also find any `setup.sh` files and run them, which will handle special setups, such as symlinking SublimeText2's settings to where they need to go, or copying include files into the nginx directory.
 
 ## Thanks
 

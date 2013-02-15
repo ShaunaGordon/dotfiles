@@ -2,10 +2,15 @@
 	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
+		"Dotfiles Syntax Highlighting",
 		"Emmet",
+		"HTML5",
+		"HTMLAttributes",
 		"Package Control",
 		"Sass",
 		"SCSS",
-		"SideBarEnhancements"
+		"SideBarEnhancements",
+		"Tag",
+		"TagWrapper"
 	]
 }
