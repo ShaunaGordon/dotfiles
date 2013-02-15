@@ -20,6 +20,10 @@ fi
 
 # Because I don't always think of Octopress as a Ruby/Rake app
 alias octopress="rake"
+# With recent versions of rake on some of my machines, I've needed
+# to use "bundle exec rake" instead of just "rake". Aliasing that to
+# Octopress helps sandbox it on machines that have more than one version of Ruby/Rake
+# alias octopress="bundle exec rake"
 
 # Override standard "ls" to automatically color, list, and show hidden
 alias ls="ls -lAh --color"
