@@ -1,6 +1,7 @@
 {
 	"font_face": "Liberation Sans",
-	"font_size": "13",
+	"font_size": "14",
 	"translate_tabs_to_spaces": false,
-	"draw_centered": false
+	"draw_centered": false,
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme"
 }
