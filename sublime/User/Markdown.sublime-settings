@@ -1,7 +1,8 @@
 {
-	"font_face": "Liberation Sans",
-	"font_size": "14",
+	"font_face": "Anonymous Pro",
+	"font_size": "11",
 	"translate_tabs_to_spaces": false,
+	"trim_trailing_white_space_on_save": true,
 	"draw_centered": false,
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme"
+	"color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme"
 }
