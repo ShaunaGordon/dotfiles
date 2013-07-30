@@ -3,7 +3,7 @@
 # bootstrap installs things.
 # Grabbed from Holman's repository. This falls under the MIT license, see LICENSE-MIT for info
 
-DOTFILES_ROOT="`pwd`"
+DOTFILES_ROOT="${PWD}"
 
 set -e
 
@@ -55,6 +55,7 @@ install_dotfiles () {
 	backup_all=false
 	skip_all=false
 
+	# Find and link all symlinks
 	for source in `find $DOTFILES_ROOT -maxdepth 2 -name \*.symlink`
 	do
 		dest="$HOME/.`basename \"${source%.*}\"`"
@@ -112,6 +113,13 @@ install_dotfiles () {
 			link_files $source $dest
 		fi
 
+	done
+
+	# Find and run setup scripts
+	info 'Running setup scripts'
+	for setup in `find $DOTFILES_ROOT -maxdepth 2 -name setup.sh`
+	do
+		"$setup"
 	done
 }
 
