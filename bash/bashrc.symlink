@@ -5,6 +5,9 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# OS detection
+os=$(uname -s)
+
 # User specific aliases and functions
 
 # Add git-completion
@@ -26,4 +29,8 @@ alias octopress="rake"
 # alias octopress="bundle exec rake"
 
 # Override standard "ls" to automatically color, list, and show hidden
-alias ls="ls -lAh --color"
+if [[ $os == "Darwin" ]]; then
+	alias ls="ls -lAFGh"
+else
+	alias ls="ls -lAFh --color"
+fi

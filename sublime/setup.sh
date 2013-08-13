@@ -3,7 +3,15 @@
 set -x
 
 # symlink settings in
-sublime_dir=~/.config/sublime-text-3/Packages
+# OS detection
+os=$(uname -s)
+
+if [[ $os == "Darwin" ]]; then
+	sublime_dir=~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+else
+	sublime_dir=~/.config/sublime-text-3/Packages
+fi
+
 current_dir="${PWD}"
 if [ "${PWD##*/}" != "sublime" ] && [ -d "sublime" ]
 	then
