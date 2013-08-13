@@ -4,6 +4,7 @@
 # Grabbed from Holman's repository. This falls under the MIT license, see LICENSE-MIT for info
 
 DOTFILES_ROOT="${PWD}"
+OS="$(uname -s)"
 
 set -e
 
@@ -60,6 +61,10 @@ install_dotfiles () {
 	do
 		dest="$HOME/.`basename \"${source%.*}\"`"
 
+		if [[ $OS == "Darwin" ]] && [[ -f "$source.darwin" ]]; then
+			source="$source.darwin"
+		fi
+
 		if [ -f $dest ] || [ -d $dest ]
 			then
 
@@ -114,6 +119,31 @@ install_dotfiles () {
 		fi
 
 	done
+
+	# If on Mac, symlink .bashrc to .bash_profile
+	if [[ $OS == "Darwin" ]] && [[ -f ~/.bashrc ]]; then
+		dest="$HOME/.bash_profile"
+		src="$HOME/.bashrc"
+
+		if [ "$overwrite" == "true" ] || [ "$overwrite_all" == "true" ]
+			then
+			rm -rf $dest
+			success "removed $dest"
+		fi
+
+		if [ "$backup" == "true" ] || [ "$backup_all" == "true" ]
+			then
+			mv $dest $dest\.backup
+			success "moved $dest to $dest.backup"
+		fi
+
+		if [ "$skip" == "false" ] && [ "$skip_all" == "false" ]
+			then
+			link_files $src $dest
+		else
+			success "skipped $src"
+		fi
+	fi
 
 	# Find and run setup scripts
 	info 'Running setup scripts'
