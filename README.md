@@ -6,7 +6,7 @@ I've put a lot of work into them, and have gotten tired of trying to manually ke
 
 ## Requirements
 
-Unlike just about every other dotfile repo I've found that's logically put together, I'm not a Mac user. I also don't use zsh for my shell, and even if I did, I didn't really want to rely on it for install/setup scripts (I prefer, rather, to have POSIX compliance as much as feasibly possible - or at least bash compatibility - so that I can run a script without worrying about whether X, Y, or Z is installed). That said, these scripts are written with Ubuntu in mind, so the locations of various settings that aren't universally in `~/` are written with Ubuntu/Fedora in mind (config files are generally stored in ~/.config unless the application otherwise specifies). If I ever toy around with Mac again, I'll probably update the script to include OS detection and adjust file locations as necessary. Until then, though, you'll have to edit the locations yourself.
+I've been working on getting this working under both Linux and Mac. I've successfully used the script under OSX 10.8, and the pre-platform detection version under Fedora 18, but it should work with any platform that uses the same file paths as either of these two OSes (though if it uses Mac paths and doesn't identify as Darwin, it will fail).
 
 Since this is hosted on GitHub, it is recommended that you have Git installed (and I suspect it may be a good idea to have all the other applications installed, too, so that you don't risk your customizations getting nuked, but that's just speculation), but `wget` or `curl` to the HTTP link to the repository should work just as well.
 
@@ -25,6 +25,12 @@ cd ~/.dotfiles
 Anyone that's done a lot of modifications to their dotfiles knows that they can get unruly very quickly, especially as you build your collection of languages, aliases, and who-knows-what else. This repo is my attempt at keeping things organized.
 
 I'm also like a lot of other people in that I have more than one computer (home, work, auxillary...), and would like my settings consistent between them all, at least to start with. This greatly helps with that by keeping them all in one actual, physical location, while symlinking them where they all need to be. By keeping them all in one place and symlinking them around, it's a lot easier to keep track of them in a git repository.
+
+### OS Detection!
+
+Yep, I started using Mac OS, and have therefore updated the scripts accordingly. The scripts default to Linux file paths, but will detect a Darwin platform (using `uname -s`) and adjust itself accordingly. As of this writing, you can use a dedicated symlink for Darwin platforms by appending `.darwin` to the symlink file (ie - `nanorc.symlink.darwin`). This will use the .darwin symlink instead of the plain .symlink file.
+
+For now, most of the OS detection stuff is in the symlink files themselves (save for nanorc, which doesn't support logic, hence the dedicated files), but I'm quickly finding OSX to be quite needy of the .bashrc/.bash_profile, so I might make it a dedicated file in the (near) future.
 
 ### So What's In Here?
 
