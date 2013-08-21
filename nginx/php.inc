@@ -23,6 +23,7 @@ location ~ \.php$ {
 	fastcgi_pass unix:/var/run/php5-fpm.sock;
 	fastcgi_index index.php;
 	include fastcgi_params;
+	#include fastcgi.conf; # OSX
 }
  
 location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {

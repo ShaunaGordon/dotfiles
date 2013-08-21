@@ -37,7 +37,7 @@ if [[ $os == "Darwin" ]]; then
 	alias ls="ls -lAFGh"
 	
 	# PATH additions
-	export PATH="/usr/local/bin:$(brew --prefix josegonzalez/php/php55)/bin:$PATH"
+	export PATH="/usr/local/bin:/usr/local/sbin:$(brew --prefix josegonzalez/php/php55)/bin:$PATH"
 	
 	# Homebrew Bash completion
 	source `brew --repository`/Library/Contributions/brew_bash_completion.sh

@@ -1,3 +1,5 @@
 Package Control.last-run
 Package Control.cache
 git/gitconfig.symlink
+
+.DS_Store
