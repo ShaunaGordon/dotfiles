@@ -21,6 +21,9 @@ if $(rbenv &>/dev/null); then
 	eval "$(rbenv init -)"
 fi
 
+# Set Ruby env
+export ENV="development"
+
 # Because I don't always think of Octopress as a Ruby/Rake app
 alias octopress="rake"
 # With recent versions of rake on some of my machines, I've needed
