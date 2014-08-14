@@ -180,3 +180,6 @@ pip-log.txt
 
 # Subversion
 .svn
+
+# PHP Info file
+info.php

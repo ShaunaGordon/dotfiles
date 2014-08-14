@@ -2,6 +2,7 @@
 	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
+		"Codeivate",
 		"DocBlockr",
 		"Dotfiles Syntax Highlighting",
 		"Emmet",
@@ -9,9 +10,13 @@
 		"Laravel Blade Highlighter",
 		"MarkdownEditing",
 		"Package Control",
+		"Puppet",
 		"Sass",
 		"SideBarEnhancements",
+		"StringUtilities",
+		"SVN",
 		"Tag",
-		"TagWrapper"
+		"TagWrapper",
+		"VBScript"
 	]
 }

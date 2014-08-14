@@ -30,6 +30,12 @@
     f = fetch
     m = merge
     p = push
+    
+    # svn shortcuts
+    sf = svn fetch
+    sr = svn rebase
+    sdd = svn dcommit --dry-run
+    sdc = svn dcommit                
 
 [core]
     editor = nano
