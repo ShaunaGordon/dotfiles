@@ -1,6 +1,11 @@
 Package Control.last-run
 Package Control.cache
+
 git/gitconfig.symlink
+
 nano/nano.symlink/search_history
+
+sublime/User/Xdebug*
+!sublime/User/Xdebug.sublime-settings
 
 .DS_Store

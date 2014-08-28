@@ -17,6 +17,7 @@
 		"SVN",
 		"Tag",
 		"TagWrapper",
-		"VBScript"
+		"VBScript",
+		"Xdebug Client"
 	]
 }

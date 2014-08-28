@@ -29,12 +29,22 @@ alias octopress="rake"
 # alias octopress="bundle exec rake"
 
 # Override standard "ls" to automatically color, list, and show hidden
-alias ls="ls -lAFh --color"
+# Also add Mac-specific stuff
+# My gods, OSX is needy...
+	
+#ls override
+alias ls="ls -lAFGh"
+	
+# PATH additions
+export PATH="/usr/local/bin:/usr/local/sbin:$(brew --prefix josegonzalez/php/php55)/bin:$PATH"
+	
+# Homebrew Bash completion
+source `brew --repository`/Library/Contributions/brew_bash_completion.sh
+	
+# Deal with Github's rate limiter
+export HOMEBREW_GITHUB_API_TOKEN="3eacd305e67dab664f039d4736c1b8485ea00ffc"
 
 
 # Alias artisan command, so I don't always have to explicitly invoke PHP
 # and let's shorten it a little bit
 alias arti="php artisan"
-
-# Shorten yaourt, because it's awkward as hell for me to type
-alias yo="yaourt"

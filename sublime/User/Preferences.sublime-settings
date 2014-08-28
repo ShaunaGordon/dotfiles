@@ -17,8 +17,8 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Markdown",
-		"Vintage"
+		"Vintage",
+		"Markdown"
 	],
 	"open_files_in_new_window": false,
 	"trim_automatic_white_space": false,
