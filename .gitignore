@@ -9,3 +9,6 @@ sublime/User/Xdebug*
 !sublime/User/Xdebug.sublime-settings
 
 .DS_Store
+
+# Package Control uses SSL now, which is cool, but we don't need it in the repo
+*ca-bundle
