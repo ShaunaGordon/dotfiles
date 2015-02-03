@@ -31,6 +31,8 @@ alias octopress="rake"
 # Override standard "ls" to automatically color, list, and show hidden
 alias ls="ls -lAFh --color"
 
+# Turn numlock the fuck on. I hate not having numlock on by default.
+setleds -D +num
 
 # Alias artisan command, so I don't always have to explicitly invoke PHP
 # and let's shorten it a little bit
@@ -38,3 +40,6 @@ alias arti="php artisan"
 
 # Shorten yaourt, because it's awkward as hell for me to type
 alias yo="yaourt"
+
+# Shortcut for starting work. Just makes life easier.
+alias work="cd /mnt/data/core-apps && vagrant up && cd /mnt/data/core-apps/FORMfields/trunk && svn up && cd /mnt/data/core-apps/ext/trunk && svn up && cd /mnt/data/core-apps/goExpo && svn up && vagrant ssh"
