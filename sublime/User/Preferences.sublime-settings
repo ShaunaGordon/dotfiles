@@ -3,7 +3,31 @@
 	"auto_find_in_selection": true,
 	"bold_folder_labels": true,
 	"close_windows_when_empty": true,
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
+	"file_exclude_patterns":
+	[
+		"*.pyc",
+		"*.pyo",
+		"*.exe",
+		"*.dll",
+		"*.obj",
+		"*.o",
+		"*.a",
+		"*.lib",
+		"*.so",
+		"*.dylib",
+		"*.ncb",
+		"*.sdf",
+		"*.suo",
+		"*.pdb",
+		"*.idb",
+		"*.class",
+		"*.psd",
+		"*.db",
+		"*.beam",
+		".DS_Store",
+		".tags"
+	],
 	"folder_exclude_patterns":
 	[
 		".svn",
@@ -13,12 +37,12 @@
 		".vagrant"
 	],
 	"font_face": "Anonymous Pro",
-	"font_size": 14,
+	"font_size": 12,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Vintage",
-		"Markdown"
+		"Markdown",
+		"Vintage"
 	],
 	"open_files_in_new_window": false,
 	"trim_automatic_white_space": false,
