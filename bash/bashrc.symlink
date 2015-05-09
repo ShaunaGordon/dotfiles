@@ -32,7 +32,7 @@ alias octopress="rake"
 alias ls="ls -lAFh --color"
 
 # Turn numlock the fuck on. I hate not having numlock on by default.
-setleds -D +num
+#setleds -D +num
 
 # Alias artisan command, so I don't always have to explicitly invoke PHP
 # and let's shorten it a little bit
