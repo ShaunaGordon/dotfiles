@@ -1,8 +1,18 @@
 {
-	"font_face": "Anonymous Pro",
-	"font_size": "11",
+	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
+	"draw_centered": false,
+	"extensions":
+	[
+		"md"
+	],
+	"font_face": "Cardo",
+	"font_size": 12,
+	"line_numbers": true,
 	"translate_tabs_to_spaces": false,
 	"trim_trailing_white_space_on_save": true,
-	"draw_centered": false,
-	"color_scheme": "Packages/Color Scheme - Default/Pastels on Dark.tmTheme"
+	"word_wrap": true,
+	"wrap_width": 80,
+	"caret_extra_top": 0,
+	"caret_extra_bottom": 0,
+	"caret_extra_width": 0
 }

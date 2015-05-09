@@ -1,20 +1,22 @@
 {
 	"auto_upgrade_last_run": null,
-	"installed_dependencies":
+	"in_process_packages":
 	[
-		"0_package_control_loader",
-		"bz2",
-		"ssl-linux"
 	],
 	"installed_packages":
 	[
+		"BeautifyRuby",
 		"Codeivate",
 		"DocBlockr",
 		"Dotfiles Syntax Highlighting",
 		"Emmet",
+		"GitGutter",
 		"HTMLAttributes",
+		"HTMLBeautify",
 		"Laravel Blade Highlighter",
+		"Markdown Extended",
 		"MarkdownEditing",
+		"Monokai Extended",
 		"Package Control",
 		"Puppet",
 		"Sass",
