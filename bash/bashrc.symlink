@@ -48,3 +48,4 @@ alias tmuxworkat="tmux attach -t work"
 export SVN_EDITOR=nano
 
 export gesvn="^/goExpo/branches/shauna"
+export ethan="^/goExpo/branches/ethan"
