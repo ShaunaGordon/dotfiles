@@ -39,7 +39,7 @@ alias arti="php artisan"
 alias yo="yaourt"
 
 # Shortcuts for starting work. Just makes life easier.
-alias work="cd /mnt/data/core-apps && vagrant up && cd /mnt/data/core-apps/FORMfields/trunk && svn up && cd /mnt/data/core-apps/ext/trunk && svn up && cd /mnt/data/core-apps/goExpo/trunk && svn up && vagrant ssh"
+alias work="cd /mnt/data/core-apps && vagrant up && cd /mnt/data/core-apps/ext && git pull && cd /mnt/data/core-apps/FORMfields && git pull && cd /mnt/data/core-apps/goExpo && vagrant ssh"
 
 alias tmuxwork="tmux new -s work"
 alias tmuxworkat="tmux attach -t work"
