@@ -39,13 +39,7 @@ alias arti="php artisan"
 alias yo="yaourt"
 
 # Shortcuts for starting work. Just makes life easier.
-alias work="cd /mnt/data/core-apps && vagrant up && cd /mnt/data/core-apps/ext && git pull && cd /mnt/data/core-apps/FORMfields && git pull && cd /mnt/data/core-apps/goExpo && vagrant ssh"
+alias work="cd /mnt/data/core-apps && vagrant box update && vagrant up && vagrant ssh"
 
 alias tmuxwork="tmux new -s work"
 alias tmuxworkat="tmux attach -t work"
-
-# SVN is stupid, apparently...
-export SVN_EDITOR=nano
-
-export gesvn="^/goExpo/branches/shauna"
-export ethan="^/goExpo/branches/ethan"
