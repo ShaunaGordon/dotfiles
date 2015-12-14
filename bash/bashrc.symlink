@@ -37,9 +37,3 @@ alias arti="php artisan"
 
 # Shorten yaourt, because it's awkward as hell for me to type
 alias yo="yaourt"
-
-# Shortcuts for starting work. Just makes life easier.
-alias work="cd /mnt/data/core-apps && vagrant box update && vagrant up && vagrant ssh"
-
-alias tmuxwork="tmux new -s work"
-alias tmuxworkat="tmux attach -t work"
