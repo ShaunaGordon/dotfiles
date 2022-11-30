@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 if [ "$CODESPACES" = "true" ]; then
+  echo "In a Codespaces instance. Adding Codespaces-specific settings."
+  
   # Source my dotfiles for zsh.
   echo "source /workspaces/.codespaces/.persistedshare/dotfiles/codespacesrc" >> $HOME/.zshrc
   
