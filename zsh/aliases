@@ -1,0 +1,5 @@
+# Generic aliases used regardless of platform or context
+
+alias dc="docker compose"
+alias dce="docker compose exec"
+alias dcr="docker compose run"
