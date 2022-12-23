@@ -1,5 +1,11 @@
 # Generic aliases used regardless of platform or context
 
+# Docker/Docker-Compose
 alias dc="docker compose"
 alias dce="docker compose exec"
 alias dcr="docker compose run"
+
+# Ruby/Rails
+alias be="bundle exec"
+alias rails="bundle exec rails"
+alias serve="rails s"

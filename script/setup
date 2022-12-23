@@ -3,7 +3,7 @@ if [ "$CODESPACES" = "true" ]; then
   echo "In a Codespaces instance. Adding Codespaces-specific settings."
 
   # Source my dotfiles for zsh.
-  echo "source /workspaces/.codespaces/.persistedshare/dotfiles/codespacesrc" >> $HOME/.zshrc
+  echo "source /workspaces/.codespaces/.persistedshare/dotfiles/zsh/codespaces" >> $HOME/.zshrc
 
   # Add repo access to npmrc
   # https://github.com/customink/ndx/blob/da294f6eb1a66ec17509e434bbecb8ba80ed4fa8/docs/development.md#authentication-for-private-packages
