@@ -4,17 +4,6 @@ if [ "$CODESPACES" = "true" ]; then
 
   # Source my dotfiles for zsh.
   echo "source /workspaces/.codespaces/.persistedshare/dotfiles/zsh/codespaces" >> $HOME/.zshrc
-
-  # Add repo access to npmrc
-  # https://github.com/customink/ndx/blob/da294f6eb1a66ec17509e434bbecb8ba80ed4fa8/docs/development.md#authentication-for-private-packages
-  echo "//npm.pkg.github.com/:_authToken=${CI_GH_AUTH}" >> $HOME/.npmrc
-  chmod 600 $HOME/.npmrc
-
-  # Add repo access for Ruby (copy so secrets can be added without polluting the git repo)
-  cp /workspaces/.codespaces/.persistedshare/dotfiles/codespaces/netrc $HOME/.netrc
-  sed -i -e "s/<auth>/${CI_GH_AUTH}/g" $HOME/.netrc
-  chmod 600 $HOME/.netrc
-
 else
   echo "Copying main ZSH RC"
   cp ../zshrc $HOME/.zshrc
