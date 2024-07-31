@@ -9,17 +9,17 @@ else
   echo "Let's get our generic stuff out of the way, first. It doesn't really matter what nix platform we're on, other than Codespaces."
 
   echo "Linking gitconfig"
-  ln -s "~/.dotfiles/git/gitconfig" "~/.gitconfig"
+  ln -s $HOME/.dotfiles/git/gitconfig $HOME/.gitconfig
 
   echo "Linking ssh config"
-  ln -s "~/.dotfiles/ssh/config" "~/.ssh/config"
-  chmod 600 ~/.ssh/config
+  ln -s $HOME/.dotfiles/ssh/config $HOME/.ssh/config
+  chmod 600 $HOME/.ssh/config
 
   if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Looks like we're running on a Mac. Adding Mac-specific things."
 
     echo "Copying main ZSH RC (because we don't always want to keep changes to this file)."
-    cp "~/.dotfiles/shell/zsh/zshrc" "~/.zshrc"
+    cp $HOME/.dotfiles/shell/zsh/zshrc $HOME/.zshrc
 
     # This should detect if it's a work machine, based on an env variable set by Strap, which is how this is getting called
     if [ -n $CUSTOM_BREW_COMMAND ]; then
@@ -38,18 +38,18 @@ else
       echo "We're using zsh, so let's set up zsh stuff."
 
       echo "Copying main ZSH RC (because we don't always want to keep changes to this file)."
-      cp "~/.dotfiles/shell/zsh/zshrc" "~/.zshrc"
+      cp $HOME/.dotfiles/shell/zsh/zshrc $HOME/.zshrc
 
     elif [[ "$SHELL" == *"fish"* ]]; then
       echo "We're using fish, so let's set up fish stuff."
 
       echo "Linking base dotfiles.fish file."
-      ln -s "~/.dotfiles/shell/fish/dotfiles.fish" "~/.config/fish/conf.d/dotfiles.fish"
+      ln -s $HOME/.dotfiles/shell/fish/dotfiles.fish $HOME/.config/fish/conf.d/dotfiles.fish
 
       if [[ "uname -a" == *"garuda"* ]] || [[ "uname -a" == *"GARUDA"* ]]; then
         echo "Ohey, it's Garuda! We don't need to do as much, since they do a bunch of configurations."
       else
-        ln -s "~/.dotfiles/shell/fish/not-garuda.fish" "~/.config/fish/conf.d/not-garuda.fish"
+        ln -s $HOME/.dotfiles/shell/fish/not-garuda.fish $HOME/.config/fish/conf.d/not-garuda.fish
       fi
     else
       echo "We're probably using bash here."
