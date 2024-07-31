@@ -39,6 +39,8 @@ else
 
       echo "Copying main ZSH RC (because we don't always want to keep changes to this file)."
       cp $HOME/.dotfiles/shell/zsh/zshrc $HOME/.zshrc
+      echo "source ~/.dotfiles/shell/aliases/arch" >> $HOME/.zshrc
+      echo "source ~/.dotfiles/shell/aliases/not-garuda" >> $HOME/.zshrc
 
     elif [[ "$SHELL" == *"fish"* ]]; then
       echo "We're using fish, so let's set up fish stuff."
@@ -55,6 +57,7 @@ else
       echo "We're probably using bash here."
       echo "source ~/.dotfiles/shell/aliases/base" >> $HOME/.bashrc
       echo "source ~/.dotfiles/shell/aliases/arch" >> $HOME/.bashrc
+      echo "source ~/.dotfiles/shell/aliases/not-garuda" >> $HOME/.bashrc
     fi
   fi
 fi
