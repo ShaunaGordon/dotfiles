@@ -27,11 +27,11 @@ else
     if [ -n $CUSTOM_BREW_COMMAND ]; then
       echo "This machine is for work. Setting up work-specific things."
 
-      echo "source ~/.dotfiles/shell/zsh/work" >> $HOME/.zshrc
+      echo "source ${DOTFILES_ROOT}/shell/zsh/work" >> $HOME/.zshrc
     else
       echo "Not a work machine. Setting up generic Mac stuff."
 
-      echo "source ~/.dotfiles/shell/zsh/darwin" >> $HOME/.zshrc
+      echo "source ${DOTFILES_ROOT}/shell/zsh/darwin" >> $HOME/.zshrc
     fi
   elif [[ "$OSTYPE" == "linux"* ]]; then
     echo "Looks like we're running Linux. Let's get it set up."
@@ -41,8 +41,8 @@ else
 
       echo "Copying main ZSH RC (because we don't always want to keep changes to this file)."
       cp $DOTFILES_ROOT/shell/zsh/zshrc $HOME/.zshrc
-      echo "source ~/.dotfiles/shell/aliases/arch" >> $HOME/.zshrc
-      echo "source ~/.dotfiles/shell/aliases/not-garuda" >> $HOME/.zshrc
+      echo "source ${DOTFILES_ROOT}/shell/aliases/arch" >> $HOME/.zshrc
+      echo "source ${DOTFILES_ROOT}/shell/aliases/not-garuda" >> $HOME/.zshrc
 
     elif [[ "$SHELL" == *"fish"* ]]; then
       echo "We're using fish, so let's set up fish stuff."
@@ -57,9 +57,9 @@ else
       fi
     else
       echo "We're probably using bash here."
-      echo "source ~/.dotfiles/shell/aliases/base" >> $HOME/.bashrc
-      echo "source ~/.dotfiles/shell/aliases/arch" >> $HOME/.bashrc
-      echo "source ~/.dotfiles/shell/aliases/not-garuda" >> $HOME/.bashrc
+      echo "source ${DOTFILES_ROOT}/shell/aliases/base" >> $HOME/.bashrc
+      echo "source ${DOTFILES_ROOT}/shell/aliases/arch" >> $HOME/.bashrc
+      echo "source ${DOTFILES_ROOT}/shell/aliases/not-garuda" >> $HOME/.bashrc
     fi
   fi
 fi
