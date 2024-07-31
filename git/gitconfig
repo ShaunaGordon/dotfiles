@@ -1,0 +1,12 @@
+[core]
+	autocrlf = input
+[user]
+	name = Shauna Gordon
+	email = shauna@shaunagordon.com
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[init]
+	defaultBranch = main

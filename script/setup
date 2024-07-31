@@ -1,25 +1,60 @@
 #!/usr/bin/env bash
+
 if [ "$CODESPACES" = "true" ]; then
   echo "In a Codespaces instance. Adding Codespaces-specific settings."
 
   # Source my dotfiles for zsh.
-  echo "source /workspaces/.codespaces/.persistedshare/dotfiles/zsh/codespaces" >> $HOME/.zshrc
+  echo "source /workspaces/.codespaces/.persistedshare/dotfiles/shell/zsh/codespaces" >> $HOME/.zshrc
 else
-  echo "Copying main ZSH RC"
-  cp ../zshrc $HOME/.zshrc
+  echo "Let's get our generic stuff out of the way, first. It doesn't really matter what nix platform we're on, other than Codespaces."
+
+  echo "Linking gitconfig"
+  ln -s "~/.dotfiles/git/gitconfig" "~/.gitconfig"
+
+  echo "Linking ssh config"
+  ln -s "~/.dotfiles/ssh/config" "~/.ssh/config"
+  chmod 600 ~/.ssh/config
 
   if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Looks like we're running on a Mac. Adding Mac-specific things."
+
+    echo "Copying main ZSH RC (because we don't always want to keep changes to this file)."
+    cp "~/.dotfiles/shell/zsh/zshrc" "~/.zshrc"
 
     # This should detect if it's a work machine, based on an env variable set by Strap, which is how this is getting called
     if [ -n $CUSTOM_BREW_COMMAND ]; then
       echo "This machine is for work. Setting up work-specific things."
 
-      echo "source ~/.dotfiles/zsh/work" >> $HOME/.zshrc
+      echo "source ~/.dotfiles/shell/zsh/work" >> $HOME/.zshrc
     else
       echo "Not a work machine. Setting up generic Mac stuff."
 
-      echo "source ~/.dotfiles/zsh/darwin" >> ~/.zshrc
+      echo "source ~/.dotfiles/shell/zsh/darwin" >> $HOME/.zshrc
+    fi
+  elif [[ "$OSTYPE" == "linux"* ]]; then
+    echo "Looks like we're running Linux. Let's get it set up."
+
+    if [[ "$SHELL" == *"zsh" ]]; then
+      echo "We're using zsh, so let's set up zsh stuff."
+
+      echo "Copying main ZSH RC (because we don't always want to keep changes to this file)."
+      cp "~/.dotfiles/shell/zsh/zshrc" "~/.zshrc"
+
+    elif [[ "$SHELL" == *"fish"* ]]; then
+      echo "We're using fish, so let's set up fish stuff."
+
+      echo "Linking base dotfiles.fish file."
+      ln -s "~/.dotfiles/shell/fish/dotfiles.fish" "~/.config/fish/conf.d/dotfiles.fish"
+
+      if [[ "uname -a" == *"garuda"* ]] || [[ "uname -a" == *"GARUDA"* ]]; then
+        echo "Ohey, it's Garuda! We don't need to do as much, since they do a bunch of configurations."
+      else
+        ln -s "~/.dotfiles/shell/fish/not-garuda.fish" "~/.config/fish/conf.d/not-garuda.fish"
+      fi
+    else
+      echo "We're probably using bash here."
+      echo "source ~/.dotfiles/shell/aliases/base" >> $HOME/.bashrc
+      echo "source ~/.dotfiles/shell/aliases/arch" >> $HOME/.bashrc
     fi
   fi
 fi

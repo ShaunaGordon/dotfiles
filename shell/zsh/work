@@ -1,0 +1,2 @@
+# Base zsh stuff for Mac
+source ~/.dotfiles/shell/zsh/darwin
