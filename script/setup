@@ -3,7 +3,11 @@
 DOTFILES_ROOT=$(pwd -P)
 
 setup_zsh () {
+  echo "Copying main ZSH RC (because we don't always want to keep changes to this file) and adding environment variables and aliases."
+  cp $DOTFILES_ROOT/shell/zsh/zshrc $HOME/.zshrc
 
+  # Set environment variables
+  echo "source ${DOTFILES_ROOT}/shell/env/base" >> $HOME/.zshrc
 }
 
 if [ "$CODESPACES" = "true" ]; then
@@ -23,33 +27,20 @@ else
   if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Looks like we're running on a Mac. Adding Mac-specific things."
 
-    echo "Copying main ZSH RC (because we don't always want to keep changes to this file) and adding environment variables and aliases."
-    cp $DOTFILES_ROOT/shell/zsh/zshrc $HOME/.zshrc
+    setup_zsh
+    echo "source ${DOTFILES_ROOT}/shell/zsh/darwin" >> $HOME/.zshrc
 
-    # Set environment variables
-    echo "source ${DOTFILES_ROOT}/shell/env/base" >> $HOME/.zshrc
+    echo "Installing Homebrew. Prepare for password entry."
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+    $(./install.sh)
 
-    # This should detect if it's a work machine, based on an env variable set by Strap, which is how this is getting called
-    if [ -n $CUSTOM_BREW_COMMAND ]; then
-      echo "This machine is for work. Setting up work-specific things."
-
-      echo "source ${DOTFILES_ROOT}/shell/zsh/work" >> $HOME/.zshrc
-    else
-      echo "Not a work machine. Setting up generic Mac stuff."
-
-      echo "source ${DOTFILES_ROOT}/shell/zsh/darwin" >> $HOME/.zshrc
-    fi
   elif [[ "$OSTYPE" == "linux"* ]]; then
     echo "Looks like we're running Linux. Let's get it set up."
 
     if [[ "$SHELL" == *"zsh" ]]; then
       echo "We're using zsh, so let's set up zsh stuff."
 
-      echo "Copying main ZSH RC (because we don't always want to keep changes to this file) and adding environment variables and aliases."
-      cp $DOTFILES_ROOT/shell/zsh/zshrc $HOME/.zshrc
-
-      # Set environment variables
-      echo "source ${DOTFILES_ROOT}/shell/env/base" >> $HOME/.zshrc
+      setup_zsh
 
       # Set aliases
       echo "source ${DOTFILES_ROOT}/shell/aliases/arch" >> $HOME/.zshrc
