@@ -18,21 +18,27 @@ if [ "$CODESPACES" = "true" ]; then
 else
   echo "Let's get our generic stuff out of the way, first. It doesn't really matter what nix platform we're on, other than Codespaces."
 
-  echo "Linking gitconfig"
+  echo "Linking gitconfig..."
   ln -s $DOTFILES_ROOT/git/gitconfig $HOME/.gitconfig
 
-  echo "Linking ssh config"
+  echo "Linking ssh config..."
   ln -s $DOTFILES_ROOT/ssh/config $HOME/.ssh/config
+
+  # Yes, we'll install it even for Linux. This makes getting NodeJS infinitely easier, even on Linux.
+  echo "Installing Homebrew. Prepare for password entry."
+  curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+  $(./install.sh)
+
+  echo "Installing node..."
+  brew install node
+  echo "Enabling corepack, so we can use Yarn as intended."
+  corepack enable
 
   if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Looks like we're running on a Mac. Adding Mac-specific things."
 
     setup_zsh
     echo "source ${DOTFILES_ROOT}/shell/zsh/darwin" >> $HOME/.zshrc
-
-    echo "Installing Homebrew. Prepare for password entry."
-    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-    $(./install.sh)
 
   elif [[ "$OSTYPE" == "linux"* ]]; then
     echo "Looks like we're running Linux. Let's get it set up."
