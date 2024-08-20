@@ -25,7 +25,7 @@ else
   ln -s $DOTFILES_ROOT/ssh/config $HOME/.ssh/config
 
   # Yes, we'll install it even for Linux. This makes getting NodeJS infinitely easier, even on Linux.
-  echo "Installing Homebrew. Prepare for password entry."
+  echo "Installing Homebrew."
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   echo "Installing node..."
