@@ -27,7 +27,7 @@ else
   # Yes, we'll install it even for Linux. This makes getting NodeJS infinitely easier, even on Linux.
   echo "Installing Homebrew. Prepare for password entry."
   curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-  $(/bin/bash ./install.sh)
+  $(./install.sh)
 
   echo "Installing node..."
   brew install node
