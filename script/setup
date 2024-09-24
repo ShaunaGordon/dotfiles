@@ -29,6 +29,7 @@ else
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   echo "Installing node..."
+  # Corepack is now kept separate for some ungodly reason
   brew install node corepack
   echo "Enabling corepack, so we can use Yarn as intended."
   corepack enable
