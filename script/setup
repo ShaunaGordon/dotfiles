@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-if [ -n "$DOTFILES_ROOT" ]
-DOTFILES_ROOT=$(pwd -P)
+if [ -n "$DOTFILES_ROOT" ]; then
+  # Do we need to do anything if it exists?
+else
+  DOTFILES_ROOT=$(pwd -P)
 
-# Set the dotfiles root
-# TODO: make an append to file function that looks for existing lines
-echo "export DOTFILES_ROOT=${DOTFILES_ROOT}" >> $DOTFILES_ROOT/shell/env/base
+  # Set the dotfiles root
+  echo "export DOTFILES_ROOT=${DOTFILES_ROOT}" >> $DOTFILES_ROOT/shell/env/base
+fi
 
 setup_zsh () {
   echo "Copying main ZSH RC (because we don't always want to keep changes to this file) and adding environment variables and aliases."
