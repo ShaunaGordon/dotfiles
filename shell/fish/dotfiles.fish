@@ -1,2 +1,2 @@
-source ~/.dotfiles/shell/env/base
-source ~/.dotfiles/shell/aliases/base
+source ../../env/base
+source ../../aliases/base
