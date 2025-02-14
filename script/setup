@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+if [ "$DOTFILES_ROOT" ]
 DOTFILES_ROOT=$(pwd -P)
 
 # Set the dotfiles root
