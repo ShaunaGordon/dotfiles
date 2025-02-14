@@ -1,3 +1,4 @@
 export EDITOR='code'
 
 export PATH=$PATH:~/hugo
+export DOTFILES_ROOT=/home/dragonwolf/dotfiles
