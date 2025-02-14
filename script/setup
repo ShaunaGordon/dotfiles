@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 DOTFILES_ROOT=$(pwd -P)
-export DOTFILES_ROOT=$DOTFILES_ROOT
+
+# Set the dotfiles root
+# TODO: make an append to file function that looks for existing lines
+echo "export DOTFILES_ROOT=${DOTFILES_ROOT}" >> $DOTFILES_ROOT/shell/env/base
 
 setup_zsh () {
   echo "Copying main ZSH RC (because we don't always want to keep changes to this file) and adding environment variables and aliases."
