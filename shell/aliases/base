@@ -9,3 +9,5 @@ alias dcr="docker compose run"
 alias be="bundle exec"
 alias rails="bundle exec rails"
 alias serve="rails s"
+
+alias venv="virtualenv"
