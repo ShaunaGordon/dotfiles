@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 if [ -n "$DOTFILES_ROOT" ]; then
   echo $DOTFILES_ROOT
@@ -6,14 +6,24 @@ else
   DOTFILES_ROOT=$(pwd -P)
 
   # Set the dotfiles root
-  echo "export DOTFILES_ROOT=${DOTFILES_ROOT}" >> $DOTFILES_ROOT/shell/env/base
+  echo "export DOTFILES_ROOT=${DOTFILES_ROOT}" >> ~/.dotfiles_root
 fi
 
 setup_zsh () {
+  echo "Set up OMZ..."
+
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &
+  wait
+
   echo "Copying main ZSH RC (because we don't always want to keep changes to this file) and adding environment variables and aliases."
+  if [ -e "$HOME/.zshrc" ]; then
+    echo "ZSH config already found, backing it up."
+    mv $HOME/.zshrc $HOME/.zshrc.old
+  fi
   cp $DOTFILES_ROOT/shell/zsh/zshrc $HOME/.zshrc
 
   # Set environment variables
+  echo "Set environment variables."
   echo "source ${DOTFILES_ROOT}/shell/env/base" >> $HOME/.zshrc
 }
 
@@ -31,21 +41,28 @@ else
   echo "Linking ssh config..."
   ln -s $DOTFILES_ROOT/ssh/config $HOME/.ssh/config
 
-  # Yes, we'll install it even for Linux. This makes getting NodeJS infinitely easier, even on Linux.
-  echo "Installing Homebrew."
-  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if ! command -v brew &> /dev/null; then
+    # Yes, we'll install it even for Linux. This makes getting NodeJS infinitely easier, even on Linux.
+    echo "Homebrew not found, installing it..."
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
 
-  echo "Installing node..."
-  # Corepack is now kept separate for some ungodly reason
-  brew install node corepack
-  echo "Enabling corepack, so we can use Yarn as intended."
-  corepack enable
+  if ! command -v corepack &> /dev/null; then
+    echo "Node not found, installing it..."
+    # Corepack is now kept separate for some ungodly reason
+    brew install node corepack
+    echo "Enabling corepack, so we can use Yarn as intended."
+    corepack enable
+  fi
 
   if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Looks like we're running on a Mac. Adding Mac-specific things."
 
     setup_zsh
     echo "source ${DOTFILES_ROOT}/shell/zsh/darwin" >> $HOME/.zshrc
+
+    echo "And here we go!"
+    source ~/.zshrc
 
   elif [[ "$OSTYPE" == "linux"* ]]; then
     echo "Looks like we're running Linux. Let's get it set up."
@@ -57,24 +74,16 @@ else
 
       # Set aliases
       echo "source ${DOTFILES_ROOT}/shell/aliases/arch" >> $HOME/.zshrc
-      echo "source ${DOTFILES_ROOT}/shell/aliases/not-garuda" >> $HOME/.zshrc
 
-    elif [[ "$SHELL" == *"fish"* ]]; then
-      echo "We're using fish, so let's set up fish stuff."
-
-      echo "Linking base dotfiles.fish file."
-      ln -s $DOTFILES_ROOT/shell/fish/dotfiles.fish $HOME/.config/fish/conf.d/dotfiles.fish
-
-      if [[ "uname -a" == *"garuda"* ]] || [[ "uname -a" == *"GARUDA"* ]]; then
-        echo "Ohey, it's Garuda! We don't need to do as much, since they do a bunch of configurations."
-      else
-        ln -s $DOTFILES_ROOT/shell/fish/not-garuda.fish $HOME/.config/fish/conf.d/not-garuda.fish
-      fi
+      echo "And here we go!"
+      source ~/.zshrc
     else
       echo "We're probably using bash here."
       echo "source ${DOTFILES_ROOT}/shell/aliases/base" >> $HOME/.bashrc
       echo "source ${DOTFILES_ROOT}/shell/aliases/arch" >> $HOME/.bashrc
-      echo "source ${DOTFILES_ROOT}/shell/aliases/not-garuda" >> $HOME/.bashrc
+
+      echo "And here we go!"
+      source ~/.bashrc
     fi
   fi
 fi

@@ -5,4 +5,4 @@
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git macos brew git-extras vscode iterm2 nanoc colorize colored-man-pages alias-finder common-aliases  gem gh ruby rails)
 
-source ~/.dotfiles/shell/aliases/darwin
+source $DOTFILES_ROOT/shell/aliases/darwin
