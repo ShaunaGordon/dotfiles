@@ -1,3 +1,3 @@
 plugins=(git archlinux caniuse colored-man-pages colorize dotenv emoji github gitignore git-extras git-lfs node ohmyzsh-full-autoupdate pre-commit python rust ssh sudo themes vscode yarn you-should-use zsh-syntax-highlighting)
 
-source ~/.dotfiles/shell/aliases/arch
+source $DOTFILES_ROOT/shell/aliases/arch

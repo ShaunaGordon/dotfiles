@@ -1,4 +1,6 @@
-#!/usr/bin/env zsh
+# What? No hashbang?? Nope, and that's intentional.
+# We need this to run in the native shell environment that the user is running.
+# Otherwise, we can't detect the proper shell we're actually using and install the right things.
 
 if [ -n "$DOTFILES_ROOT" ]; then
   echo $DOTFILES_ROOT
@@ -27,6 +29,19 @@ setup_zsh () {
   echo "source ${DOTFILES_ROOT}/shell/env/base" >> $HOME/.zshrc
 }
 
+setup_bash () {
+  echo "Set up OMB..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" &
+  wait
+
+  echo "Copying main Bash RC (because we don't always want to keep changes to this file) and adding environment variables and aliases."
+  if [ -e "$HOME/.bashrc" ]; then
+    echo "Bash config already found, backing it up."
+    mv $HOME/.bashrc $HOME/.bashrc.old
+  fi
+  cp $DOTFILES_ROOT/shell/bash/bashrc $HOME/.bashrc
+}
+
 if [ "$CODESPACES" = "true" ]; then
   echo "In a Codespaces instance. Adding Codespaces-specific settings."
 
@@ -35,9 +50,17 @@ if [ "$CODESPACES" = "true" ]; then
 else
   echo "Let's get our generic stuff out of the way, first. It doesn't really matter what nix platform we're on, other than Codespaces."
 
+  if [ -e "$HOME/.gitconfig" ]; then
+    echo "Existing gitconfig found, backing it up."
+    mv $HOME/.gitconfig $HOME/.gitconfig.old
+  fi
   echo "Linking gitconfig..."
   ln -s $DOTFILES_ROOT/git/gitconfig $HOME/.gitconfig
 
+  if [ -e $HOME/.ssh/config ]; then
+    echo "Existing ssh config found, backing it up."
+    mv $HOME/.ssh/config $HOME/.ssh/config.old
+  fi
   echo "Linking ssh config..."
   ln -s $DOTFILES_ROOT/ssh/config $HOME/.ssh/config
 
@@ -55,6 +78,12 @@ else
     corepack enable
   fi
 
+  if ! command -v uvx &> /dev/null; then
+    # uv/uvx is the Python equivalent of npm/npx that Python so sorely needed
+    echo "uv/uvx not found, installing it..."
+    /bin/bash -c "$(curl -LsSf https://astral.sh/uv/install.sh)"
+  fi
+
   if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Looks like we're running on a Mac. Adding Mac-specific things."
 
@@ -65,6 +94,10 @@ else
     source ~/.zshrc
 
   elif [[ "$OSTYPE" == "linux"* ]]; then
+    # I only ever run Arch-based distros these days,
+    # and most things are harmless to have on a non-Arch system,
+    # so I'm not bothering to discern more beyond "it's Linux".
+    # However, maybe one day that will change, so it's named "arch".
     echo "Looks like we're running Linux. Let's get it set up."
 
     if [[ "$SHELL" == *"zsh" ]]; then
@@ -73,12 +106,17 @@ else
       setup_zsh
 
       # Set aliases
+      echo "Setting up shell-specific aliases..."
       echo "source ${DOTFILES_ROOT}/shell/aliases/arch" >> $HOME/.zshrc
 
       echo "And here we go!"
       source ~/.zshrc
     else
       echo "We're probably using bash here."
+
+      setup_bash
+
+      echo "Setting up shell-specific aliases..."
       echo "source ${DOTFILES_ROOT}/shell/aliases/base" >> $HOME/.bashrc
       echo "source ${DOTFILES_ROOT}/shell/aliases/arch" >> $HOME/.bashrc
 

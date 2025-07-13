@@ -11,3 +11,6 @@ alias rails="bundle exec rails"
 alias serve="rails s"
 
 alias venv="virtualenv"
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
