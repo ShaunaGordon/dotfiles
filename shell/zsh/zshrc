@@ -102,5 +102,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+source $DOTFILES_ROOT/shell/env/paths
 source $DOTFILES_ROOT/shell/aliases/base
 source $DOTFILES_ROOT/shell/zsh/completions

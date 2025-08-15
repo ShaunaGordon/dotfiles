@@ -67,7 +67,8 @@ else
   if ! command -v brew &> /dev/null; then
     # Yes, we'll install it even for Linux. This makes getting NodeJS infinitely easier, even on Linux.
     echo "Homebrew not found, installing it..."
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   fi
 
   if ! command -v corepack &> /dev/null; then

@@ -168,4 +168,4 @@ source "$OSH"/oh-my-bash.sh
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-PS1='[\u@\h \W]\$ '
+source $DOTFILES_ROOT/shell/env/paths
