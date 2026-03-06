@@ -14,3 +14,9 @@ Host github.com
 	User git
 	HostName github.com
 	IdentityFile ~/.ssh/github
+
+Host git.genomestudios.ca
+	User git
+	HostName git.genomestudios.ca
+	Port 2222
+	IdentityFile ~/.ssh/genome

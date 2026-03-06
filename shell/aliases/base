@@ -5,6 +5,11 @@ alias dc="docker compose"
 alias dce="docker compose exec"
 alias dcr="docker compose run"
 
+# Podman
+alias pc="podman compose"
+alias pce="podman compose exec"
+alias pcr="podman compose run"
+
 # Ruby/Rails
 alias be="bundle exec"
 alias rails="bundle exec rails"

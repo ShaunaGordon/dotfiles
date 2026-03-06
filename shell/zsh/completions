@@ -18174,4 +18174,3 @@ if [ "$funcstack[1]" = "_deno" ]; then
 else
     compdef _deno deno
 fi
-
